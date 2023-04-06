@@ -2,8 +2,6 @@ package handlers
 
 import (
 	"net/http"
-
-	k "github.com/stefanKnott/armet/pkg/kubernetes"
 )
 
 type getKubernetesContextResponse struct {
@@ -12,7 +10,7 @@ type getKubernetesContextResponse struct {
 
 func GetCurrentContext(w http.ResponseWriter, r *http.Request) {
 	getKubernetesContextResponse := getKubernetesContextResponse{
-		Context: k.CurrentContext,
+		Context: "",
 	}
 	JSON(w, 200, getKubernetesContextResponse)
 }

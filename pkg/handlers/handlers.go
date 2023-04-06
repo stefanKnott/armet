@@ -9,7 +9,7 @@ import (
 
 func RegisterHandlerRoutes(r *mux.Router) {
 	r.Name("GetHelmReleases").Path("/api/v1/helm/releases").Methods("GET").HandlerFunc(GetHelmReleases)
-	r.Name("GetHelmReleasesByNamespace").Path("/api/v1/helm/namespaces").Methods("GET").HandlerFunc(GetHelmReleasesByNamespace)
+	r.Name("GetHelmReleasesByNamespace").Path("/api/v1/helm/{cluster}/namespaces").Methods("GET").HandlerFunc(GetHelmReleasesByNamespace)
 	r.Name("GetCurrentContext").Path("/api/v1/kubernetes/currentContext").Methods("GET").HandlerFunc(GetCurrentContext)
 }
 

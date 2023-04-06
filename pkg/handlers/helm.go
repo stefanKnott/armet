@@ -3,11 +3,12 @@ package handlers
 import (
 	"net/http"
 
+	"github.com/gorilla/mux"
 	"github.com/stefanKnott/armet/pkg/helm"
 )
 
 type GetHelmReleasesResponse struct {
-	Releases []helm.HelmRelease `json:"releases"`
+	Releases map[string]map[string][]helm.HelmRelease `json:"releases"`
 }
 
 type GetHelmReleasesByNamespaceResponse struct {
@@ -15,7 +16,7 @@ type GetHelmReleasesByNamespaceResponse struct {
 }
 
 func GetHelmReleases(w http.ResponseWriter, r *http.Request) {
-	releases := helm.GetReleaseSlice()
+	releases := helm.GetReleases()
 	getHelmReleasesResponse := GetHelmReleasesResponse{
 		Releases: releases,
 	}
@@ -23,7 +24,8 @@ func GetHelmReleases(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetHelmReleasesByNamespace(w http.ResponseWriter, r *http.Request) {
-	releases := helm.GetReleaseByNamespaceMap()
+	params := mux.Vars(r)
+	releases := helm.GetReleaseByNamespaceMap(params["cluster"])
 	getHelmReleasesByNamespaceResponse := GetHelmReleasesByNamespaceResponse{
 		Releases: releases,
 	}

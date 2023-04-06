@@ -8,9 +8,7 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-var CurrentContext string
-
-func ParseContext(kubeconfig string) {
+func ParseContext(kubeconfig string) string {
 	yfile, err := ioutil.ReadFile(kubeconfig)
 	if err != nil {
 		log.Fatal(err)
@@ -24,10 +22,12 @@ func ParseContext(kubeconfig string) {
 	}
 
 	var ok bool
-	CurrentContext, ok = data["current-context"].(string)
+	currentContext, ok := data["current-context"].(string)
 	if !ok {
 		log.Fatal("string assert for current-context failed")
 	}
 
-	fmt.Printf("analyzing cluster: %s\n", CurrentContext)
+	fmt.Printf("analyzing cluster: %s\n", currentContext)
+
+	return currentContext
 }

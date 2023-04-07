@@ -1,15 +1,15 @@
 import { Sidebar, Menu, MenuItem, useProSidebar, SubMenu } from 'react-pro-sidebar';
 import React, {useState, useEffect} from 'react';
+import ChartInfo from './ChartInfo.jsx'
 
 
 const Layout = () => {
 
     const [chartsByNamespace, setChartsByNamespace] = useState();
     const [isLoading, setIsLoading] = useState(true);
-    const [display, setDisplay] = useState(false)
-
-    // const [chartView, setChartView] = useState(null)
-    let chartView = null;
+    const [displayChart, setDisplayChart] = useState(false)
+    const [chartView, setChartView] = useState(null)
+    const [chart, setChart] = useState(null);
 
 
     useEffect(() => {
@@ -40,20 +40,9 @@ const Layout = () => {
     return numDeployed;
   }
 
-  const ChartCard = ({chart}) => {
-
-  }
-
-  const showChart = (chart) => {
-    setDisplay(true);
-      // chartView = (
-      //   <div>
-      //   <h2>{chart.name}</h2>
-      //   <p>Chart version: {chart.chart.metadata.version}</p>
-      //   <p>Application version: {chart.chart.metadata.appVersion}</p>
-      //   <p>Status: {chart.info.status}</p>
-      //   </div>
-      // )
+  const displayChartCard = (chart) => {
+      setChart(chart)
+      setDisplayChart(true)
   }
 
   const getNamespaceLabel = (namespace, charts) => {
@@ -67,7 +56,7 @@ const Layout = () => {
       {Object.entries(namespaces).map(([namespace, charts]) => (
       <SubMenu key={namespace} label={getNamespaceLabel(namespace,charts)}>
           {charts.map((chart) => (
-          <MenuItem onClick={showChart(chart)} key={chart.name}>{chart.name}</MenuItem>
+          <MenuItem onClick={() => displayChartCard(chart)} active="true" key={chart.name}>{chart.name}</MenuItem>
           ))}
       </SubMenu>
       ))}
@@ -89,7 +78,12 @@ const Layout = () => {
           </Menu>
           )}
         </Sidebar>
-        {chartView}
+
+        {displayChart ? (
+          <ChartInfo chart={chart}/>
+          ) : (
+            <p></p>
+        )}
       </div>              
     );
 };

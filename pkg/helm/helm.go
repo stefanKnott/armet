@@ -64,7 +64,6 @@ func GetReleaseByNamespaceMap(cluster string) map[string][]HelmRelease {
 	return cs
 }
 
-//TODO: here we could take a list of kubeconfig files, create loop per config
 func BeginLoop(pathToConfigs string) {
 	charts = make(map[string]*HelmRelease)
 	chartsByCluster = make(map[string]map[string]map[string]*HelmRelease)

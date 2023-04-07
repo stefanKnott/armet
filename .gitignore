@@ -1,1 +1,2 @@
-web/armet-fe/node_modules/.cache/*
+web/armet-fe/node_modules/
+kubeconfigs/

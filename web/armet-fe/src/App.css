@@ -37,6 +37,30 @@
   padding: 110px;
 }
 
+.chartName {
+  display: inline-block;
+}
+
+.deployed {
+  width: 20px;
+  height: 20px;
+  background-color: green;
+  border-radius: 50%;
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+}
+
+.failed {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+}
+
 .logo {
   height: 100px;
   width: 100px;

@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import logo from './armet.png';
 import './App.css';
 import React, {useState, setState} from 'react';
 import axios from 'axios';
@@ -11,6 +11,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+      <img className="logo" src={logo} alt={"logo"}/> 
+      <h2 className="title">armet </h2>
         {currentContext}
       </header>
       <ProSidebarProvider>

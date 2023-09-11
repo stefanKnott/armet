@@ -28,6 +28,25 @@
   color: #61dafb;
 }
 
+.title{
+  font-size: calc(15px + 2vmin);
+  color: white;
+  left: 0px;
+  display: block;
+  position: absolute;
+  padding: 110px;
+}
+
+.logo {
+  height: 100px;
+  width: 100px;
+  display: block;
+  position: absolute;
+  left: 0px;
+  padding: 10px;
+  /* Other styles here */
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

@@ -13,6 +13,8 @@ import (
 	"sync"
 	"time"
 
+	"gopkg.in/yaml.v2"
+
 	k "github.com/stefanKnott/armet/pkg/kubernetes"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
@@ -121,6 +123,11 @@ func BeginLoop(pathToConfigs string) {
 					}
 
 					chartLock.Lock()
+					valuesBytes, err := yaml.Marshal(hr.Chart.Values)
+					if err != nil {
+						panic(err)
+					}
+					hr.Chart.ValuesYaml = string(valuesBytes)
 					charts[hr.Name] = hr
 
 					if chartsByCluster[clusterName] == nil {
